@@ -1031,3 +1031,46 @@ progress::-moz-progress-bar {
   font-style: italic;
 }
 
+/* Update/add these styles in your styles.css */
+input[type="range"] {
+  height: 24px; /* Thicker bar */
+  appearance: none;
+  width: 100%;
+  border-radius: 9999px; /* Full round edges */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 32px;
+  height: 32px;
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 32px;
+  height: 32px;
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.rating-slider-container {
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.rating-slider-container span {
+  font-size: 1.25rem;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}

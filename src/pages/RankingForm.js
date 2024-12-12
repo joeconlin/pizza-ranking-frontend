@@ -3,6 +3,30 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useParams } from 'react-router-dom';
 import { API_URL } from '../config';
 
+// Add this function right before your RankingForm component
+const getColor = (value) => {
+  // Poor (0-2)
+  if (value <= 2) {
+    return '#EF4444';
+  }
+  // Below Average (2.1-4)
+  else if (value <= 4) {
+    return '#F97316';
+  }
+  // Average (4.1-6)
+  else if (value <= 6) {
+    return '#FBBF24';
+  }
+  // Good (6.1-8)
+  else if (value <= 8) {
+    return '#34D399';
+  }
+  // Excellent (8.1-10)
+  else {
+    return '#10B981';
+  }
+};
+
 const RankingForm = () => {
 
   const location = useLocation();
@@ -90,7 +114,7 @@ const RankingForm = () => {
         </p>
       </div>
       <form onSubmit={handleSubmit}>
-        {["crust", "sauce", "cheese", "flavor"].map((category) => (
+      {["crust", "sauce", "cheese", "flavor"].map((category) => (
           <div key={category} className="rating-slider-container">
             <label htmlFor={category}>
               {category.charAt(0).toUpperCase() + category.slice(1)}:
@@ -103,8 +127,13 @@ const RankingForm = () => {
               step="0.1"
               value={ratings[category]}
               onChange={(e) => handleRatingChange(category, parseFloat(e.target.value))}
+              style={{
+                backgroundColor: getColor(ratings[category])
+              }}
             />
-            <span>{ratings[category]}</span>
+            <span style={{ color: getColor(ratings[category]) }}>
+              {ratings[category]}
+            </span>
           </div>
         ))}
         <div className="notes-container">
