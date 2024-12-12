@@ -13,7 +13,7 @@ function NavBar() {
     setUserName(tempName);
 
     // Update UID-to-Username mapping in the backend
-    await fetch('${API_URL}/set-name', {
+    await fetch(`${API_URL}/set-name`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ clientUID, userName: tempName }),
