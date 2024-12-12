@@ -14,7 +14,7 @@ function Leaderboard() {
   useEffect(() => {
     const fetchLeaderboard = async () => {
       try {
-        const response = await fetch('${API_URL}get-leaderboard');
+        const response = await fetch(`${API_URL}/get-leaderboard`);
         if (!response.ok) {
           throw new Error('Failed to fetch leaderboard');
         }

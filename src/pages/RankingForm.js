@@ -61,7 +61,7 @@ const RankingForm = () => {
     const payload = { clientUID, spotName, ratings, notes };
 
     try {
-      const response = await fetch("${API_URL}/submit-rating", {
+      const response = await fetch(`${API_URL}/submit-rating`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
