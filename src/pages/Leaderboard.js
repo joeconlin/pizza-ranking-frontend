@@ -127,13 +127,13 @@ function Leaderboard() {
         );
 
         if (maxAverage === parseFloat(userScores.averageCrust)) {
-          userScores.title = `${userName}'s a Crust Connoisseur!`;
+          userScores.title = `${userName} is a 🥖 Crust Connoisseur!`;
         } else if (maxAverage === parseFloat(userScores.averageSauce)) {
-          userScores.title = `${userName}'s a Sauce Boss!`;
+          userScores.title = `${userName} is a 🍅 Sauce Boss!`;
         } else if (maxAverage === parseFloat(userScores.averageCheese)) {
-          userScores.title = `${userName}'s a Cheese Freak!`;
+          userScores.title = `${userName} is a 🧀 Cheese Freak!`;
         } else {
-          userScores.title = `${userName}'s a Flavor Fanatic!`;
+          userScores.title = `${userName} is a 😋 Flavor Fanatic!`;
         }
 
         setUserStats(userScores);
