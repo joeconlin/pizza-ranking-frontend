@@ -133,7 +133,7 @@ function Leaderboard() {
         } else if (maxAverage === parseFloat(userScores.averageCheese)) {
           userScores.title = `${userName} is a 🧀 Cheese Freak!`;
         } else {
-          userScores.title = `${userName} is a 😋 Flavor Fanatic!`;
+          userScores.title = `${userName} is a 🌟 Flavor Fanatic!`;
         }
 
         setUserStats(userScores);
