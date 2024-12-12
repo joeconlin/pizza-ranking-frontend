@@ -19,7 +19,7 @@ export const UserProvider = ({ children }) => {
     // Fetch or create username for the UID
     const fetchOrCreateUsername = async () => {
       try {
-        const response = await fetch('${API_URL}/get-username', {
+        const response = await fetch(`${API_URL}/get-username`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ clientUID: uid }),
@@ -44,7 +44,7 @@ export const UserProvider = ({ children }) => {
     localStorage.setItem('userName', newName); // Save locally
 
     // Update UID-to-Username mapping in Google Sheets
-    fetch('http://localhost:5001/set-name', {
+    fetch(`${API_URL}/set-name`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ clientUID, userName: newName }),
