@@ -1,6 +1,8 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { API_URL } from '../config';
 
+console.log('API URL being used:', API_URL);
+
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
