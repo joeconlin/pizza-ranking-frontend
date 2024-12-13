@@ -42,10 +42,15 @@ export const UserProvider = ({ children }) => {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ clientUID: uid }),
         });
-
+    
         if (response.ok) {
           const data = await response.json();
-          setUserName(data.userName || 'Click to Edit Name');
+          // Only set the userName if we got one back from the server
+          if (data.userName) {
+            setUserName(data.userName);
+          } else {
+            setUserName('Click to Edit Name'); // Just for display, won't be stored
+          }
         }
       } catch (error) {
         console.error('Error fetching username:', error);
