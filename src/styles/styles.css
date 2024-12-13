@@ -746,23 +746,30 @@ button.submit-button:hover {
 
 
 /* Leaderboard Table */
-.leaderboard-header {
+.leaderboard-header, .leaderboard-row {
   display: grid;
-  grid-template-columns: 10% 60% 20%;
+  grid-template-columns: 10% 45% 45%;
   align-items: center;
-  font-weight: bold;
-  background-color: #e9ecef;
   padding: 0.75rem 1rem;
   border-bottom: 1px solid #dee2e6;
-  text-align: center;
 }
 
-.leaderboard-row {
-  display: grid;
-  grid-template-columns: 10% 60% 20%;
-  align-items: center;
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid #dee2e6;
+.leaderboard-spot-info {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #0056b3;
+}
+
+.leaderboard-subheading {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 4px;
+}
+
+.leaderboard-score {
+  font-size: 1rem;
+  text-align: center;
+  color: #555;
 }
 
 .leaderboard-spot {
@@ -770,15 +777,6 @@ button.submit-button:hover {
   font-weight: bold;
   color: #0056b3;
   margin: 0.3rem 0;
-}
-
-.leaderboard-subheading {
-  font-size: 0.9rem;
-  color: #6c757d;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.3rem;
-  margin-top: 0.2rem;
 }
 
 .leaderboard-subheading span {
