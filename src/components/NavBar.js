@@ -61,10 +61,12 @@ function NavBar() {
           className="navbar-user-icon" 
           style={{ marginLeft: '10px', cursor: 'pointer' }}
           onClick={() => setShowCode(!showCode)}
+          title="Show/Hide Code"  // Add tooltip
         />
         {showCode && (
           <div className="user-code-popup">
-            <p>Your Code: <strong>{userCode}</strong></p>
+            <div>Your Code:</div>
+            <strong>{userCode}</strong>
             <small>Use this code to link devices</small>
           </div>
         )}
