@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { API_URL } from '../config';
 
 function Leaderboard() {
-  const { clientUID, userName } = useContext(UserContext);
+  const { userCode, userName } = useContext(UserContext);
   const [leaderboard, setLeaderboard] = useState([]);
   const [categoryWinners, setCategoryWinners] = useState(null);
   const [userStats, setUserStats] = useState(null);
@@ -68,7 +68,7 @@ function Leaderboard() {
     const calculateUserStats = async (overallLeaderboard) => {
       try {
         const userResponse = await fetch(
-          `${API_URL}/get-user-ratings?clientUID=${clientUID}`
+          `${API_URL}/get-user-ratings?userCode=${userCode}`  // Changed from clientUID
         );
         if (!userResponse.ok) {
           throw new Error('Failed to fetch user ratings');

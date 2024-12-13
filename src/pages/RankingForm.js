@@ -32,7 +32,7 @@ const RankingForm = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { spotName, address, description, clientUID } = location.state || {};
-
+  const { userCode, userName } = useContext(UserContext);
   
   const [ratings, setRatings] = useState({
     crust: 5,
@@ -46,10 +46,10 @@ const RankingForm = () => {
 
   useEffect(() => {
     const fetchRatings = async () => {
-      if (clientUID && spotName) {
+      if (userCode && spotName) {  // Changed from clientUID
         try {
           const response = await fetch(
-            `${API_URL}/get-rating?clientUID=${clientUID}&spotName=${encodeURIComponent(
+            `${API_URL}/get-rating?userCode=${userCode}&spotName=${encodeURIComponent(
               spotName
             )}`
           );
@@ -82,7 +82,13 @@ const RankingForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const payload = { clientUID, spotName, ratings, notes };
+    const payload = { 
+      userCode,    // Changed from clientUID
+      userName,    // Include userName
+      spotName, 
+      ratings, 
+      notes 
+    };
 
     try {
       const response = await fetch(`${API_URL}/submit-rating`, {
@@ -92,7 +98,6 @@ const RankingForm = () => {
       });
 
       if (!response.ok) throw new Error("Failed to submit the form.");
-
       navigate("/");
     } catch (error) {
       console.error("Error submitting the form:", error);

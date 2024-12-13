@@ -8,19 +8,19 @@ import { API_URL } from '../config';
 
 const Home = () => {
   const [spots, setSpots] = useState([]);
-  const { clientUID } = useContext(UserContext);
+  const { userCode } = useContext(UserContext);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!clientUID) {
-      console.error('No clientUID provided');
+    if (!userCode) {
+      console.error('No userCode provided');
       return;
     }
 
     const fetchSpots = async () => {
       try {
         const response = await fetch(
-          `${API_URL}/get-spots?clientUID=${clientUID}`
+          `${API_URL}/get-spots?userCode=${userCode}`  // Changed from clientUID
         );
         if (!response.ok) {
           throw new Error("Failed to fetch spots");
@@ -43,9 +43,9 @@ const Home = () => {
       }
     };
     
-
     fetchSpots();
-  }, [clientUID]);
+  }, [userCode]);
+
 
   const handleClick = (spot) => {
     navigate('/ranking-form', {
@@ -53,7 +53,7 @@ const Home = () => {
         spotName: spot.spotName,
         address: spot.address,
         description: spot.description,
-        clientUID, // Include clientUID in the state
+        userCode,
       },
     });
   };

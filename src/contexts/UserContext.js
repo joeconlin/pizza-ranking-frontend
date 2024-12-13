@@ -2,52 +2,56 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { API_URL } from '../config';
 
-const nouns = ['DOG', 'CAT', 'FOX', 'BEAR', 'WOLF', 'LION', 'HAWK', 'STAR'];
+const pizzaWords = [
+  'pizza', 'slice', 'crust', 'sauce', 'cheese', 
+  'mozz', 'parm', 'dough', 'fresh', 'crisp',
+  'bite', 'hot', 'steam', 'brick', 'wood',
+  'fire', 'spice', 'herb', 'oil', 'red',
+  'basil', 'garlic', 'toast', 'bake'
+];
+
+const animals = [
+  'dog', 'cat', 'fox', 'bear', 'wolf', 'lion', 'hawk', 'owl',
+  'seal', 'deer', 'goat', 'bird', 'duck', 'crow', 'frog',
+  'newt', 'hare', 'lynx', 'puma', 'deer'
+];
 
 const generateUserCode = () => {
-  const noun = nouns[Math.floor(Math.random() * nouns.length)];
-  return `pizza-${noun.toLowerCase()}`;
+  const pizzaWord = pizzaWords[Math.floor(Math.random() * pizzaWords.length)];
+  const animal = animals[Math.floor(Math.random() * animals.length)];
+  return `${pizzaWord}-${animal}`;
 };
 
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [userName, setUserName] = useState('');
-  const [clientUID, setClientUID] = useState('');
   const [userCode, setUserCode] = useState('');
-  const [showCodeEntry, setShowCodeEntry] = useState(false);
 
   useEffect(() => {
-    // Check for existing ID and code
-    let uid = localStorage.getItem('clientUID');
+    // Check for existing code
     let code = localStorage.getItem('userCode');
     
-    if (!uid || !code) {  // Check for both uid AND code
-      uid = crypto.randomUUID();
+    if (!code) {
       code = generateUserCode();
-      localStorage.setItem('clientUID', uid);
       localStorage.setItem('userCode', code);
     }
     
-    setClientUID(uid);
     setUserCode(code);
 
-    // Fetch username as before
-    const fetchOrCreateUsername = async () => {
+    // Fetch username if exists
+    const fetchUsername = async () => {
       try {
         const response = await fetch(`${API_URL}/get-username`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ clientUID: uid }),
+          body: JSON.stringify({ userCode: code }),
         });
-    
+
         if (response.ok) {
           const data = await response.json();
-          // Only set the userName if we got one back from the server
           if (data.userName) {
             setUserName(data.userName);
-          } else {
-            setUserName('Click to Edit Name'); // Just for display, won't be stored
           }
         }
       } catch (error) {
@@ -55,17 +59,14 @@ export const UserProvider = ({ children }) => {
       }
     };
 
-    fetchOrCreateUsername();
+    fetchUsername();
   }, []);
 
   return (
     <UserContext.Provider value={{ 
       userName, 
       setUserName, 
-      clientUID,
-      userCode,
-      showCodeEntry,
-      setShowCodeEntry
+      userCode
     }}>
       {children}
     </UserContext.Provider>
