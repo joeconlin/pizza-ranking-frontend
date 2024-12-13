@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { FaHome, FaChartBar, FaUser } from 'react-icons/fa';
+import { FaHome, FaChartBar, FaUser, FaKey } from 'react-icons/fa';
 import { UserContext } from '../contexts/UserContext';
 import { API_URL } from '../config';
 
