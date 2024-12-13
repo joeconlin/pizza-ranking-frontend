@@ -143,7 +143,7 @@ function Leaderboard() {
     };
 
     fetchLeaderboard();
-  }, [clientUID, userName]);
+  }, [userCode, userName]);
 
   if (loading) {
     return <div className="text-center">Loading leaderboard...</div>;
@@ -184,7 +184,7 @@ function Leaderboard() {
                 spotName: spot.spotName,
                 address: spot.address, // Assuming you have address data
                 description: spot.description, // Assuming you have description data
-                clientUID: clientUID, // Pass clientUID if required
+                userCode: userCode, // Pass clientUID if required
               }}
               className="leaderboard-spot"
             >

@@ -89,7 +89,7 @@ const Home = () => {
                   spotName: spot.spotName,
                   address: spot.address, // Pass additional spot details if needed
                   description: spot.description, // Optional: pass more details
-                  clientUID, // Include clientUID here
+                  userCode, // Include clientUID here
                 },
               })
             }
