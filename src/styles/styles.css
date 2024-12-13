@@ -1037,3 +1037,36 @@ input[type="range"]::-moz-range-thumb {
   cursor: pointer;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
+
+/* Add to your existing styles.css */
+.user-code-popup {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-top: 0.5rem;
+  z-index: 1000;
+  text-align: center;
+}
+
+.user-code-popup strong {
+  color: #007bff;
+  font-size: 1.1rem;
+}
+
+.user-code-popup small {
+  display: block;
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+.navbar-user-icon {
+  transition: color 0.3s ease;
+}
+
+.navbar-user-icon:hover {
+  color: #0056b3;
+}

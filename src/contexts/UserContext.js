@@ -1,24 +1,40 @@
+// contexts/UserContext.js
 import React, { createContext, useState, useEffect } from 'react';
 import { API_URL } from '../config';
 
-console.log('API URL being used:', API_URL);
+const adjectives = ['RED', 'BLUE', 'FAST', 'COOL', 'HOT', 'BIG', 'TINY', 'WILD'];
+const nouns = ['DOG', 'CAT', 'FOX', 'BEAR', 'WOLF', 'LION', 'HAWK', 'STAR'];
+
+const generateUserCode = () => {
+  const adj = adjectives[Math.floor(Math.random() * adjectives.length)];
+  const noun = nouns[Math.floor(Math.random() * nouns.length)];
+  return `PIZZA-${adj}-${noun}`;
+};
 
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [userName, setUserName] = useState('');
   const [clientUID, setClientUID] = useState('');
+  const [userCode, setUserCode] = useState('');
+  const [showCodeEntry, setShowCodeEntry] = useState(false);
 
   useEffect(() => {
-    // Check if a UID exists in localStorage; otherwise, generate a new one
+    // Check for existing ID and code
     let uid = localStorage.getItem('clientUID');
+    let code = localStorage.getItem('userCode');
+    
     if (!uid) {
       uid = crypto.randomUUID();
+      code = generateUserCode();
       localStorage.setItem('clientUID', uid);
+      localStorage.setItem('userCode', code);
     }
+    
     setClientUID(uid);
+    setUserCode(code);
 
-    // Fetch or create username for the UID
+    // Fetch username as before
     const fetchOrCreateUsername = async () => {
       try {
         const response = await fetch(`${API_URL}/get-username`, {
@@ -30,31 +46,24 @@ export const UserProvider = ({ children }) => {
         if (response.ok) {
           const data = await response.json();
           setUserName(data.userName || 'Click to Edit Name');
-        } else {
-          console.error('Failed to fetch username');
         }
       } catch (error) {
-        console.error('Error fetching username:', error.message);
+        console.error('Error fetching username:', error);
       }
     };
 
     fetchOrCreateUsername();
   }, []);
 
-  const updateUserName = (newName) => {
-    setUserName(newName);
-    localStorage.setItem('userName', newName); // Save locally
-
-    // Update UID-to-Username mapping in Google Sheets
-    fetch(`${API_URL}/set-name`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ clientUID, userName: newName }),
-    }).catch((error) => console.error('Error updating username:', error.message));
-  };
-
   return (
-    <UserContext.Provider value={{ userName, setUserName: updateUserName, clientUID }}>
+    <UserContext.Provider value={{ 
+      userName, 
+      setUserName, 
+      clientUID,
+      userCode,
+      showCodeEntry,
+      setShowCodeEntry
+    }}>
       {children}
     </UserContext.Provider>
   );
