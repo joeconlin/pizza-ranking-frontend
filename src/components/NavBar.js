@@ -8,6 +8,8 @@ function NavBar() {
   const [isEditing, setIsEditing] = useState(false);
   const [tempName, setTempName] = useState(userName || '');
 
+  console.log('NavBar render:', { userName, clientUID, userCode }); // Debug line
+
   const handleSaveName = async () => {
     setIsEditing(false);
     setUserName(tempName);
@@ -48,7 +50,9 @@ function NavBar() {
             <span className="navbar-username" onClick={() => setIsEditing(true)}>
               {userName || 'Click to Edit Name'}
             </span>
-            <span className="user-code">{userCode}</span>
+            <span className="user-code" title="Your unique identifier">
+              ({userCode})
+            </span>
           </div>
         )}
       </div>
