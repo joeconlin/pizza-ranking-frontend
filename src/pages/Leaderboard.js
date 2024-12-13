@@ -171,34 +171,37 @@ function Leaderboard() {
       <div className="leaderboard-table">
       <div className="leaderboard-header">
         <span>Rank</span>
-        <span className="leaderboard-spot-header">Spot (User Score)</span>
-        <span>Group Avg. (Score)</span>
+        <span className="leaderboard-spot-header">Your Ranking</span>
+        <span>Group Avg. Rank</span>
       </div>
       {leaderboard.map((spot, index) => (
-        <div className="leaderboard-row" key={index}>
-          <span className="leaderboard-rank">{index + 1}</span>
-          {/* User Score */}
-          <div className="leaderboard-spot-info">
-            <Link
-              to="/ranking-form"
-              state={{
-                spotName: spot.spotName,
-                userCode: userCode,
-              }}
-              className="leaderboard-spot"
-            >
-              {spot.spotName} <span>({spot.userScore})</span>
-            </Link>
-            <span className="leaderboard-subheading">
-              🥖 {spot.averageCrust || '-'} 🍅 {spot.averageSauce || '-'} 🧀 {spot.averageCheese || '-'} 🌟 {spot.averageOverallFlavor || '-'}
-            </span>
+          <div className="leaderboard-row" key={index}>
+            <span className="leaderboard-rank">{index + 1}</span>
+            {/* User Score */}
+            <div className="leaderboard-spot-info">
+              <Link
+                to="/ranking-form"
+                state={{
+                  spotName: spot.spotName,
+                  userCode: userCode,
+                }}
+                className="leaderboard-spot"
+              >
+                {spot.spotName} <span>({spot.userScore})</span>
+              </Link>
+              <span className="leaderboard-subheading">
+                🥖 {spot.userCategoryScores.crust || '-'} 🍅 {spot.userCategoryScores.sauce || '-'} 🧀 {spot.userCategoryScores.cheese || '-'} 🌟 {spot.userCategoryScores.overallFlavor || '-'}
+              </span>
+            </div>
+            {/* Group Score */}
+            <div className="leaderboard-spot-info">
+              {spot.spotName} <span>({spot.groupAvgScore})</span>
+              <span className="leaderboard-subheading">
+                🥖 {spot.averageCrust || '-'} 🍅 {spot.averageSauce || '-'} 🧀 {spot.averageCheese || '-'} 🌟 {spot.averageOverallFlavor || '-'}
+              </span>
+            </div>
           </div>
-          {/* Group Score */}
-          <div className="leaderboard-spot-info">
-            {spot.spotName} <span>({spot.groupAvgScore})</span>
-          </div>
-        </div>
-      ))}
+        ))}
     </div>
       {userStats && (
         <div className="user-stats mt-5">
