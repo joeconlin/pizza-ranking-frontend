@@ -744,11 +744,11 @@ button.submit-button:hover {
   color: #007bff;
 }
 
-
 /* Leaderboard Table */
-.leaderboard-header, .leaderboard-row {
+.leaderboard-header,
+.leaderboard-row {
   display: grid;
-  grid-template-columns: 10% 45% 45%;
+  grid-template-columns: 10% 45% 45%; /* Ensure columns align */
   align-items: center;
   padding: 0.75rem 1rem;
   border-bottom: 1px solid #dee2e6;
@@ -758,7 +758,7 @@ button.submit-button:hover {
   font-size: 1rem;
   font-weight: bold;
   color: #0056b3;
-  margin-bottom: 4px;
+  text-align: left;
 }
 
 .leaderboard-subheading {
@@ -767,12 +767,12 @@ button.submit-button:hover {
   margin-top: 4px;
 }
 
-.leaderboard-score {
+.leaderboard-rank {
   font-size: 1rem;
+  font-weight: bold;
+  color: #333;
   text-align: center;
-  color: #555;
 }
-
 .leaderboard-spot {
   font-size: 1.2rem;
   font-weight: bold;

@@ -169,15 +169,17 @@ function Leaderboard() {
       )}
       <h3 className="text-center mb-4">Top-Ranked Spots</h3>
       <div className="leaderboard-table">
-      <div className="leaderboard-header">
-        <span>Rank</span>
-        <span className="leaderboard-spot-header">Your Ranking</span>
-        <span>Group Avg. Rank</span>
-      </div>
-      {leaderboard.map((spot, index) => (
+        <div className="leaderboard-header">
+          <span>Rank</span>
+          <span>Your Ranking</span>
+          <span>Group Avg. Rank</span>
+        </div>
+        {leaderboard.map((spot, index) => (
           <div className="leaderboard-row" key={index}>
+            {/* Rank */}
             <span className="leaderboard-rank">{index + 1}</span>
-            {/* User Score */}
+
+            {/* Your Ranking */}
             <div className="leaderboard-spot-info">
               <Link
                 to="/ranking-form"
@@ -189,20 +191,23 @@ function Leaderboard() {
               >
                 {spot.spotName} <span>({spot.userScore})</span>
               </Link>
-              <span className="leaderboard-subheading">
+              <div className="leaderboard-subheading">
                 🥖 {spot.userCategoryScores.crust || '-'} 🍅 {spot.userCategoryScores.sauce || '-'} 🧀 {spot.userCategoryScores.cheese || '-'} 🌟 {spot.userCategoryScores.overallFlavor || '-'}
-              </span>
+              </div>
             </div>
-            {/* Group Score */}
+
+            {/* Group Avg. Rank */}
             <div className="leaderboard-spot-info">
-              {spot.spotName} <span>({spot.groupAvgScore})</span>
-              <span className="leaderboard-subheading">
-                🥖 {spot.averageCrust || '-'} 🍅 {spot.averageSauce || '-'} 🧀 {spot.averageCheese || '-'} 🌟 {spot.averageOverallFlavor || '-'}
+              <span className="leaderboard-spot">
+                {spot.spotName} <span>({spot.groupAvgScore})</span>
               </span>
+              <div className="leaderboard-subheading">
+                🥖 {spot.averageCrust || '-'} 🍅 {spot.averageSauce || '-'} 🧀 {spot.averageCheese || '-'} 🌟 {spot.averageOverallFlavor || '-'}
+              </div>
             </div>
           </div>
         ))}
-    </div>
+      </div>
       {userStats && (
         <div className="user-stats mt-5">
           <h3 className="text-center">{userStats.title}</h3>
