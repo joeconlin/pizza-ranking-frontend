@@ -744,18 +744,6 @@ button.submit-button:hover {
   color: #007bff;
 }
 
-/* User stats card */
-.user-stats h3 {
-  font-size: 1.8rem; /* Prominent size */
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 1rem;
-  background: linear-gradient(to right, #D4AF37, #8B4513); /* Earthy gradient */
-  -webkit-background-clip: text; /* Apply gradient to text only */
-  -webkit-text-fill-color: transparent; /* Make the background visible */
-  text-shadow: 2px 2px 4px rgba(212, 175, 55, 0.6); /* Golden shadow */
-}
-
 
 /* Leaderboard Table */
 .leaderboard-header {
