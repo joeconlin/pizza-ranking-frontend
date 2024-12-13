@@ -14,26 +14,26 @@ function Leaderboard() {
   useEffect(() => {
     const fetchLeaderboard = async () => {
       try {
-        const response = await fetch(`${API_URL}/get-leaderboard`);
+        const response = await fetch(`${API_URL}/get-leaderboard?userCode=${userCode}`);
         if (!response.ok) {
           throw new Error('Failed to fetch leaderboard');
         }
         const data = await response.json();
-
+    
         if (data.length === 0) {
           setLeaderboard([]);
           setCategoryWinners(null);
           setLoading(false);
           return;
         }
-
+    
         const sanitizedData = data.map((spot) => ({
           ...spot,
           averageScore: parseFloat(spot.averageScore) || 0,
         }));
-
+    
         const sortedData = sanitizedData.sort((a, b) => b.averageScore - a.averageScore);
-
+    
         const winners = {
           crust: null,
           sauce: null,
@@ -54,7 +54,7 @@ function Leaderboard() {
             winners.flavor = { spotName: spot.spotName, score: spot.averageOverallFlavor };
           }
         });
-
+    
         setCategoryWinners(winners);
         setLeaderboard(sortedData);
         calculateUserStats(sortedData);
