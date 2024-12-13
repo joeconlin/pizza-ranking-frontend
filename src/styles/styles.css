@@ -1038,33 +1038,24 @@ input[type="range"]::-moz-range-thumb {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
-/* Add/update these styles in your styles.css */
-.navbar {
-  position: relative;  /* Add this to establish positioning context */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.user-code-popup {
-  position: absolute;
-  top: calc(100% + 10px);  /* Position below navbar with some spacing */
-  right: 10px;
-  background: white;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  z-index: 1000;  /* Ensure it appears above other content */
-  min-width: 200px;
-  border: 1px solid #e5e7eb;
+.user-code {
+  font-size: 0.8rem;
+  color: #6b7280;
+  opacity: 0.8;
+  font-family: monospace;
 }
 
-.user-code-popup strong {
-  display: block;
+.navbar-username {
   color: #007bff;
-  font-size: 1.2rem;
-  margin: 8px 0;
+  cursor: pointer;
 }
 
-.user-code-popup small {
-  display: block;
-  color: #666;
-  font-size: 0.9rem;
+.navbar-username:hover {
+  text-decoration: underline;
 }

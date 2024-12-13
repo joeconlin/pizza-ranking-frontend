@@ -2,13 +2,11 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { API_URL } from '../config';
 
-const adjectives = ['RED', 'BLUE', 'FAST', 'COOL', 'HOT', 'BIG', 'TINY', 'WILD'];
 const nouns = ['DOG', 'CAT', 'FOX', 'BEAR', 'WOLF', 'LION', 'HAWK', 'STAR'];
 
 const generateUserCode = () => {
-  const adj = adjectives[Math.floor(Math.random() * adjectives.length)];
   const noun = nouns[Math.floor(Math.random() * nouns.length)];
-  return `PIZZA-${adj}-${noun}`;
+  return `pizza-${noun.toLowerCase()}`;
 };
 
 export const UserContext = createContext();

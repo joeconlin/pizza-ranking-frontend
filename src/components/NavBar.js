@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { FaHome, FaChartBar, FaUser, FaKey } from 'react-icons/fa';
+import { FaHome, FaChartBar, FaUser } from 'react-icons/fa';
 import { UserContext } from '../contexts/UserContext';
 import { API_URL } from '../config';
 
@@ -7,21 +7,15 @@ function NavBar() {
   const { userName, setUserName, clientUID, userCode } = useContext(UserContext);
   const [isEditing, setIsEditing] = useState(false);
   const [tempName, setTempName] = useState(userName || '');
-  const [showCode, setShowCode] = useState(false);
 
   const handleSaveName = async () => {
     setIsEditing(false);
     setUserName(tempName);
 
-    // Update UID-to-Username mapping in the backend
     await fetch(`${API_URL}/set-name`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ 
-        clientUID, 
-        userName: tempName,
-        userCode // Include userCode in the mapping
-      }),
+      body: JSON.stringify({ clientUID, userName: tempName }),
     });
   };
 
@@ -50,24 +44,11 @@ function NavBar() {
             className="navbar-user-input"
           />
         ) : (
-          <span
-            className="navbar-username"
-            onClick={() => setIsEditing(true)}
-          >
-            {userName || 'Click to Edit Name'}
-          </span>
-        )}
-        <FaKey 
-          className="navbar-user-icon" 
-          style={{ marginLeft: '10px', cursor: 'pointer' }}
-          onClick={() => setShowCode(!showCode)}
-          title="Show/Hide Code"  // Add tooltip
-        />
-        {showCode && (
-          <div className="user-code-popup">
-            <div>Your Code:</div>
-            <strong>{userCode}</strong>
-            <small>Use this code to link devices</small>
+          <div className="user-info">
+            <span className="navbar-username" onClick={() => setIsEditing(true)}>
+              {userName || 'Click to Edit Name'}
+            </span>
+            <span className="user-code">{userCode}</span>
           </div>
         )}
       </div>
