@@ -150,7 +150,7 @@ function NavBar() {
               {userName || 'Click to Edit Name'}
             </span>
             <span className="user-code" title="Your unique identifier">
-              ({userCode})
+              (code {userCode})
             </span>
             <button 
               className="code-switch-btn"
