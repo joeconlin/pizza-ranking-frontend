@@ -22,7 +22,7 @@ export const UserProvider = ({ children }) => {
     let uid = localStorage.getItem('clientUID');
     let code = localStorage.getItem('userCode');
     
-    if (!uid) {
+    if (!uid || !code) {  // Check for both uid AND code
       uid = crypto.randomUUID();
       code = generateUserCode();
       localStorage.setItem('clientUID', uid);
