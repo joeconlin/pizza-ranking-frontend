@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useParams } from 'react-router-dom';
 import { API_URL } from '../config';
+import { UserContext } from "../contexts/UserContext";  // Adjust path as needed
 
 // Add this function right before your RankingForm component
 const getColor = (value) => {
