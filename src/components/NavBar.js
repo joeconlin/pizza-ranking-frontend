@@ -149,9 +149,7 @@ function NavBar() {
             <span className="navbar-username" onClick={() => setIsEditing(true)}>
               {userName || 'Click to Edit Name'}
             </span>
-            <span className="user-code" title="Your unique identifier">
-              (code {userCode})
-            </span>
+            
             <button 
               className="code-switch-btn"
               onClick={() => setIsEnteringCode(true)}
@@ -159,6 +157,9 @@ function NavBar() {
             >
               <FaKey size={14} />
             </button>
+            <span className="user-code" title="Your unique identifier">
+              {userCode}
+            </span>
           </div>
         )}
       </div>
