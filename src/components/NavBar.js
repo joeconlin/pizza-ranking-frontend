@@ -40,6 +40,9 @@ function NavBar() {
     setIsLoading(true);
 
     try {
+      // Debug log to check the user code being sent
+      console.log('User code being sent to /verify-code:', tempCode);
+
       const response = await fetch(`${API_URL}/verify-code`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
