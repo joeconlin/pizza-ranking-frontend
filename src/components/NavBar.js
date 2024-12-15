@@ -52,7 +52,7 @@ function NavBar() {
       if (response.ok) {
         const data = await response.json();
         if (data.valid) {
-          setIsSuccess(true);
+          console.log(`Code verified. Welcome, ${data.friendlyName || 'User'}!`);
           localStorage.setItem('userCode', tempCode);
           setTimeout(() => {
             window.location.reload();
